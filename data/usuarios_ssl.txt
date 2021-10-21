@@ -1,0 +1,4 @@
+#Fichero con los usuarios autorizados para certificados clase 2
+
+#CN,E,,,
+#Dominio,correo@dominio.com,,,

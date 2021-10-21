@@ -1,0 +1,30 @@
+<HTML>
+<HEAD>
+<Script Language="JavaScript">
+<!--
+//if the browser is netscape check for browser navigate to index2.htm
+var browserName=navigator.appName;
+var browserNum=parseInt(navigator.appVersion);
+
+
+var requiredBrowserNumMS=3;
+var requiredBrowserNumNS=3;
+
+if (browserName == "Netscape") {  
+	if (browserNum >= requiredBrowserNumNS ){
+              self.location="C2_emitirNS_cp.htm";
+        }else{
+        	self.location="error_navegador_no_soportado.htm";
+        }
+}
+else{
+	if (browserNum >= requiredBrowserNumMS ){
+              self.location="C2_emitirMS_cp.htm";
+        }else{
+        	self.location="error_navegador_no_soportado.htm";
+        }
+}
+// -->
+</script>
+</HEAD>
+</HTML>

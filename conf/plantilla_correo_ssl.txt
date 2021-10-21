@@ -1,0 +1,10 @@
+Estimado usuario:
+
+Su certificado de servidor seguro ha sido emitido con exito y
+se adjunta en este correo electronico. El certificado a sido expedido a:
+
+Nombre del servidor seguro: $$CN$$
+
+Gracias por utilizar nuestro servicio.
+Un saludo.
+Administrador SCP.

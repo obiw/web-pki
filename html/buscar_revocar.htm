@@ -1,0 +1,55 @@
+<html>
+
+<head>
+
+<title>Buscar un certificado</title>
+<link rel="stylesheet" type="text/css" href="Estilo/estilo.css">
+</head>
+
+<body>
+
+  <p><a href="/">Inicio</a> &gt; Buscar un certificado para revocar</p>
+
+  <hr>
+<center>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="414" height="65">
+  <tr>
+    <td width="14" background="Imagenes/esquina_superior_izquierda.jpg" height="19" nowrap align="center">&nbsp;</td>
+    <td background="Imagenes/superior.jpg" width="374" height="19" align="center">
+    &nbsp;</td>
+    <td width="15" background="Imagenes/esquina_superior_derecha.jpg" height="19" align="center">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="14" background="Imagenes/izquierda.jpg" height="19" align="center">&nbsp;</td>
+    <td width="374" background="Imagenes/centro.jpg" height="27" align="center">
+    <table width="358" align="left">
+    <tr>
+    <td width="356" align="center">&nbsp;<form method="POST" action="serverCA.htm" name="form" target="_self" enctype=x-www-form-urlencoded>
+        <p>
+        &nbsp;<font color="#009933"> </font> <b><font color="#009933"><font size="1">Correo electrónico:&nbsp;&nbsp;</font>&nbsp;&nbsp;
+        <input type="text" name="E" size="20" style="font-family: Verdana; font-size: 8pt; "></font></b></p>
+        <p>
+        <b><font color="#009933">&nbsp; <font size="1">Nombre del sitio Web:</font>
+        </font>
+        <input type="text" name="CN" size="20" style="font-size: 8pt; font-family: Verdana; "></b></p>
+        <p>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="submit" style="font-family: Verdana; font-size: 8pt; font-weight: bold">&nbsp; </p>
+        <input type="hidden" name="operacion" value="buscar">
+        <input type="hidden" name="destino" value="revocar">
+      </form>
+</td>
+    </table>
+    </td>
+    <td width="10" background="Imagenes/derecha.jpg" height="15" align="center">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="14" background="Imagenes/esquina_inferior_izquierda.jpg" height="19" align="center">&nbsp;</td>
+    <td width="15" background="Imagenes/inferior.jpg" height="19" align="center">&nbsp;</td>
+    <td width="15" background="Imagenes/esquina_inferior_derecha.jpg" height="19" align="center">&nbsp;</td>
+  </tr>
+</table>
+</center>
+</body>
+
+</html>

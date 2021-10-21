@@ -1,0 +1,115 @@
+<html>
+
+<head>
+
+<title>Revocar certificado</title>
+<link rel="stylesheet" type="text/css" href="Estilo/estilo.css">
+</head>
+
+<body>
+
+  <p align="left"><a href="/">Inicio</a> &gt; <b>Revocar certificado</b></p>
+  <hr>
+<center>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="985" height="65">
+  <tr>
+    <td width="14" background="Imagenes/esquina_superior_izquierda.jpg" height="19" nowrap>&nbsp;</td>
+    <td background="Imagenes/superior.jpg" width="374" height="19">
+    &nbsp;</td>
+    <td width="15" background="Imagenes/esquina_superior_derecha.jpg" height="19">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="14" background="Imagenes/izquierda.jpg" height="19">&nbsp;</td>
+    <td width="374" background="Imagenes/centro.jpg" height="27">
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="940">
+      <tr>
+            <td width="134" height="12">
+            </td>
+            <td width="806" height="12">
+            </td>
+          </tr>
+      <tr>
+            <td width="134" height="12" valign="top">
+            <font color="#009933" size="1"><b>Versión:</b></font></td>
+            <td width="806" height="12" valign="top">
+            <font size="1">$$VERSION$$</font></td>
+          </tr>
+      <tr>
+            <td width="134" height="12" valign="top">
+            <font color="#009933" size="1"><b>Asunto:</b></font></td>
+            <td width="806" height="12" valign="top">
+            <font size="1">$$ASUNTO$$</font></td>
+          </tr>
+      <tr>
+            <td width="134" height="12" valign="top">
+            <font color="#009933" size="1"><b>Emisor:</b></font></td>
+            <td width="806" height="12" valign="top">
+            <font size="1">$$EMISOR$$</font></td>
+          </tr>
+      <tr>
+            <td width="134" height="12" valign="top">
+            <font color="#009933" size="1"><b>Valido desde:</b></font></td>
+            <td width="806" height="12" valign="top">
+            <font size="1">$$DESDE$$</font></td>
+          </tr>
+      <tr>
+            <td width="134" height="12" valign="top">
+            <font color="#009933" size="1"><b>Valido hasta:</b></font></td>
+            <td width="806" height="12" valign="top">
+            <font size="1">$$HASTA$$</font></td>
+          </tr>
+      <tr>
+            <td width="134" height="8" valign="top">
+            <font color="#009933" size="1"><b>Algoritmo de firma:</b></font></td>
+            <td width="806" height="8" valign="top">
+            <font size="1">$$ALGORITMO$$</font></td>
+          </tr>
+      <tr>
+            <td width="134" height="10" valign="top">
+            <font color="#009933" size="1"><b>Estado:</b></font></td>
+            <td width="806" height="10" valign="top">
+            <font size="1">$$ESTADO$$</font></td>
+          </tr>
+      <tr>
+        <td width="134">&nbsp;</td>
+        <td width="806">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="940" colspan="2"><form method="POST" action="serverCA.htm" enctype=x-www-form-urlencoded>
+                   <p align="left"><b><font size="1" color="#009933">Contraseña:
+                   </font>
+                   <font color="#000099">
+                   <input type="password" name="challenge" size="8" style="font-family: Verdana; font-size: 8pt" maxlength="8">&nbsp;&nbsp; </font>
+                   <font size="1" color="#009933">Motivo:</font><font color="#000099">
+                   <select size="1" name="motivo" style="font-family: Verdana; font-size: 8pt">
+                   <option selected value="1">Compromiso clave</option>
+                   <option value="2">Compromiso CA</option>
+                   <option value="3">La afiliacion ha cambiado</option>
+                   <option value="4">Reemplazado</option>
+                   <option value="5">Cese de la operacion</option>
+                   <option value="6">Posesión de Certificado</option>
+                   <option value="7">Razón CRL desconocida</option>
+                   </select>&nbsp;&nbsp;&nbsp; </font>
+                   </b>
+                   <input type="submit" name="Enviar" style="font-family: Verdana; font-size: 8pt; font-weight: bold"></p>
+                   <input type="hidden" name="operacion" value="revocar">
+                   <input type="hidden" name="serial" value="$$SERIAL$$">
+                   <input type="hidden" name="E" value="$$EMAIL$$">
+                   <input type="hidden" name="CN" value="$$CN$$">
+                 </form>
+</td>
+      </tr>
+      </table>
+    </td>
+    <td width="15" background="Imagenes/derecha.jpg" height="15">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="14" background="Imagenes/esquina_inferior_izquierda.jpg" height="19">&nbsp;</td>
+    <td width="15" background="Imagenes/inferior.jpg" height="19">&nbsp;</td>
+    <td width="15" background="Imagenes/esquina_inferior_derecha.jpg" height="19">&nbsp;</td>
+  </tr>
+</table>
+</center>
+</body>
+
+</html>

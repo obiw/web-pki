@@ -1,0 +1,165 @@
+<HTML>
+<HEAD>
+<TITLE>Instalación del certificado personal</TITLE>
+<META HTTP-EQUIV="Cache-Control" CONTENT="no cache">
+<META HTTP-EQUIV="Pragma" CONTENT="no cache">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+
+
+  <object
+   classid="clsid:127698e4-e730-4e5c-a2b1-21490a70c8a1"
+   CODEBASE="/Librerias/xenroll.cab"
+   id="cenroll"
+  >
+  </object>
+
+
+
+<Script Language="JavaScript">
+<!--
+var browserName=navigator.appName;
+var browserNum=parseInt(navigator.appVersion);
+
+var requiredBrowserNumMS=3;
+
+if (browserName == "Netscape")
+    {
+         self.location="error_navegador_no_soportado.htm";
+     }
+else
+    {
+       if (browserNum < requiredBrowserNumMS )
+       {
+         self.location="error_navegador_no_soportado.htm";
+       }
+    }
+//-->
+</script>
+
+
+<SCRIPT LANGUAGE="VBScript">
+<!--
+ Dim CertChain
+ CertChain="$$CERTIFICADO1$$"
+
+  Sub InstallCert
+    Dim sz10
+    sz10 = CertChain
+    On Error Resume Next
+    cenroll.DeleteRequestCert = FALSE
+    err.clear
+    cenroll.WriteCertToCSP = true
+    cenroll.acceptPKCS7(sz10)
+    if err.number <> 0 then
+        cenroll.WriteCertToCSP = false
+        err.clear
+        cenroll.acceptPKCS7(sz10)
+        if err.number <> 0 then
+			 MsgBox("Se produjo un error al tratar de instalar tu certificado (" + hex(err.number) + ")." + Chr(13) + Chr(10)  + "Ve a la seccion Instalacion manual de esta pagina para finalizar el proceso de emision de tu certificado.")
+             exit sub
+        end if
+    end if
+  End Sub
+'-->
+</SCRIPT>
+
+<link rel="stylesheet" type="text/css" href="Estilo/estilo.css">
+
+</HEAD>
+
+<BODY 	BGCOLOR="ffffff" LINK="cc0000" VLINK="666666">
+
+<P>
+
+  <p align="left"><a href="/">Inicio</a> &gt; <b>Instalación del 
+  certificado personal</b></p>
+  <hr></hr>
+  <center>
+  
+  <p> </p>
+      </center>
+
+<TABLE WIDTH=588 BGCOLOR="ffffFF" CELLPADDING=0 CELLSPACING=0 BORDER=0>
+<TR>
+    <TD WIDTH=588 colspan=7><b>
+    <font face="verdana, arial, helvetica" size="5" color="#000099">ENHORABUEN</font></b><FONT COLOR="#000099" FACE="verdana, arial, helvetica" SIZE=5><B>A!</B></FONT><font color="#000099"><BR>
+    </font><b><font face="VERDANA, ARIAL, HELVETICA" size="2">Tu certificado ha 
+    sido emitido satisfactoriamente. Si todo ha ido bien ahora estara instalado en tu navegador. Si ha ocurrido algun problema mira como instalar manualmente tu certificado.</font></b><p>&nbsp;</TD>
+</TR>
+</TABLE>
+
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="587" height="65">
+  <tr>
+    <td width="10" background="Imagenes/esquina_superior_izquierda.jpg" height="19" nowrap>&nbsp;</td>
+    <td background="Imagenes/superior.jpg" width="383" height="19">
+    <b>
+    <font face="Verdana" size="1">Este es tu certificado:</font></b></td>
+    <td width="11" background="Imagenes/esquina_superior_derecha.jpg" height="19">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="10" background="Imagenes/izquierda.jpg" height="19">&nbsp;</td>
+    <td width="383" background="Imagenes/centro.jpg" height="27">
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="139%" height="23">
+      <tr>
+        <td width="100%" height="11">
+         </td>
+      </tr>
+      <tr>
+        <td width="100%" height="11">
+         <FONT FACE="verdana, arial, helvetica" SIZE=1 color="#000099">$$DN$$</td>
+      </tr>
+      <tr>
+        <td width="100%" height="11">
+         </td>
+      </tr>
+      <tr>
+        <td width="100%" height="12">
+         <FONT FACE="verdana, arial, helvetica" SIZE=1 color="#000099">Serial Number = $$SERIAL$$</td>
+      </tr>
+      <tr>
+         <TD WIDTH=100% height="12" >
+         </TD>
+      </tr>
+      <tr>
+        <td width="100%" height="12">
+         <b><font face="verdana, arial, helvetica" size="1" color="#000099"><b><u>INSTALACION MANUAL</u></b></font></b></td>
+      </tr>
+      <tr>
+         <TD WIDTH=100% height="12" >
+         <font size="1" color="#000099">Copia el texto que viene a continuación 
+         y pégalo en algún editor de textos sencillo. Guardo el documento con 
+         extensión .cer. Abre el fichero y elige la opcion de instalar para poder empezar a utilizar tu certificado.</font></TD>
+      </tr>
+        <FONT FACE="verdana, arial, helvetica" SIZE=1 color="#000099">
+        <FONT FACE="verdana, arial, helvetica" SIZE=2>
+      <tr>
+         <TD WIDTH=100% height="16" >
+         </TD>
+      </tr>
+      <tr>
+        <FONT FACE="verdana, arial, helvetica" SIZE=2>
+         <TD WIDTH=100% height="31" >
+         <FONT FACE="verdana, arial, helvetica" SIZE=1 color="#000099"><blockquote>
+           <p>$$CERTIFICADO2$$</p>
+         </blockquote></TD>
+      </tr>
+    </table>
+    </td>
+    <td width="11" background="Imagenes/derecha.jpg" height="15">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="10" background="Imagenes/esquina_inferior_izquierda.jpg" height="19">&nbsp;</td>
+    <td width="24" background="Imagenes/inferior.jpg" height="19">&nbsp;</td>
+    <td width="11" background="Imagenes/esquina_inferior_derecha.jpg" height="19">&nbsp;</td>
+  </tr>
+</table>
+
+<SCRIPT Language=VBScript>
+<!--
+  Call InstallCert
+-->
+</SCRIPT>
+
+
+</BODY>
+</HTML>

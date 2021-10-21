@@ -1,0 +1,23 @@
+<HTML>
+
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="414" height="65">
+  <tr>
+    <td width="15" background="Imagenes/esquina_superior_izquierda.jpg" height="19" nowrap>&nbsp;</td>
+    <td background="Imagenes/superior.jpg" width="374" height="19">
+    &nbsp;</td>
+    <td width="15" background="Imagenes/esquina_superior_derecha.jpg" height="19">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="15" background="Imagenes/izquierda.jpg" height="19">&nbsp;</td>
+    <td width="374" background="Imagenes/centro.jpg" height="27">
+    </td>
+    <td width="10" background="Imagenes/derecha.jpg" height="15">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="15" background="Imagenes/esquina_inferior_izquierda.jpg" height="19">&nbsp;</td>
+    <td width="15" background="Imagenes/inferior.jpg" height="19">&nbsp;</td>
+    <td width="15" background="Imagenes/esquina_inferior_derecha.jpg" height="19">&nbsp;</td>
+  </tr>
+</table>
+
+</HTML>

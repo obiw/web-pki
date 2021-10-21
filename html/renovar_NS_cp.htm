@@ -1,0 +1,120 @@
+
+<html>
+
+<head>
+
+
+<title>Renovar un certificado personal</title>
+<link rel="stylesheet" type="text/css" href="Estilo/estilo.css"></link>
+<body bgcolor="#FFFFFF">
+
+<p align="left"><a href="/">Inicio</a> &gt; <b>Renovar un
+certificado personal</b></p>
+<hr></hr>
+<center>
+
+<p></p>
+<form name="proform" id="proform" method="POST" action="serverCA.htm"
+	enctype=x-www-form-urlencoded><input type="hidden"
+	name="operacion" value="renovar_NS_cp"> <input type="hidden"
+	name="Serial" value="$$SERIAL$$">
+
+
+
+
+
+<table border="0" cellpadding="0" cellspacing="0"
+	style="border-collapse: collapse" width="985" height="65">
+	<tr>
+		<td width="14" background="Imagenes/esquina_superior_izquierda.jpg"
+			height="19" nowrap>&nbsp;</td>
+		<td background="Imagenes/superior.jpg" width="374" height="19">
+		&nbsp;</td>
+		<td width="15" background="Imagenes/esquina_superior_derecha.jpg"
+			height="19">&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="14" background="Imagenes/izquierda.jpg" height="19">&nbsp;</td>
+		<td width="374" background="Imagenes/centro.jpg" height="27">
+		<table border="0" cellpadding="0" cellspacing="0"
+			style="border-collapse: collapse" bordercolor="#111111" width="949">
+			<tr>
+				<td width="129">&nbsp;</td>
+				<td width="820">&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="129" valign="top"><font size="1" color="#009933"><b>Nombre
+				y Apellidos:</b></font></td>
+				<td width="820"><input type="text" name="CN" size="40"
+					style="font-family: Verdana; font-size: 8pt" disabled
+					maxlength="40" value="$$CN$$"></td>
+			</tr>
+			<tr>
+				<td width="129" valign="top"><font size="1" color="#009933"><b>Correo
+				Electrónico:</b></font></td>
+				<td width="820"><input type="text" name="E" size="40"
+					style="font-family: Verdana; font-size: 8pt" maxlength="40"
+					disabled value="$$EMAIL$$"></td>
+			</tr>
+			<tr>
+				<td width="129" valign="top"><font size="1" color="#009933"><b>País:</b></font></td>
+				<td width="820"><input type="text" name="C" size="2"
+					style="font-family: Verdana; font-size: 8pt" maxlength="2" disabled
+					value="$$C$$"></td>
+			</tr>
+			<tr>
+				<td width="129" valign="top"><font size="1" color="#009933"><b>Provincia
+				o Estado:</b></font></td>
+				<td width="820"><input type="text" name="S" size="15"
+					style="font-family: Verdana; font-size: 8pt" maxlength="15"
+					disabled value="$$S$$"></td>
+			</tr>
+			<tr>
+				<td width="129" valign="top"><font size="1" color="#009933"><b>Localidad:</b></font></td>
+				<td width="820"><input type="text" name="L" size="15"
+					style="font-family: Verdana; font-size: 8pt" maxlength="15"
+					disabled value="$$L$$"></td>
+			</tr>
+			<tr>
+				<td width="129" valign="top"><b> <font size="1"
+					color="#009933">Clave:</font></b></td>
+				<td width="820"><keygen name="public_key"
+					style="font-family: Verdana; font-size: 8pt"> </keygen></td>
+			</tr>
+			<tr>
+				<td width="129" height="10" valign="top"><font color="#009933"
+					size="1"><b>Estado:</b></font></td>
+				<td width="820" height="10"><font size="1">$$ESTADO$$</font></td>
+			</tr>
+			<tr>
+				<td width="129">&nbsp;</td>
+				<td width="820">&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="949" colspan="2" valign="top"><font size="1"
+					color="#000080">&nbsp;</font><b><font size="1" color="#009933">Contraseña:</font>
+				</b> <input type="password" name="challenge" size="8"
+					style="font-family: Verdana; font-size: 8pt" maxlength="8">
+				<input type="submit"
+					style="font-family: Verdana; font-size: 8pt; font-weight: bold">
+				<input type=hidden name=CN value="$$CN$$"> <input
+					type=hidden name=E value="$$EMAIL$$"> <input type=hidden
+					name=C value="$$C$$"> <input type=hidden name=S
+					value="$$S$$"> <input type=hidden name=L value="$$L$$">
+				</td>
+			</tr>
+		</table>
+		</td>
+		<td width="15" background="Imagenes/derecha.jpg" height="15">&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="14" background="Imagenes/esquina_inferior_izquierda.jpg"
+			height="19">&nbsp;</td>
+		<td width="15" background="Imagenes/inferior.jpg" height="19">&nbsp;</td>
+		<td width="15" background="Imagenes/esquina_inferior_derecha.jpg"
+			height="19">&nbsp;</td>
+	</tr>
+</table>
+</form>
+</body>
+</html>

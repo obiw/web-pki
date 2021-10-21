@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?><CONFIGURACION>
+    <INSTALACION>
+        <DIRECTORIO>~/webpki</DIRECTORIO>
+    </INSTALACION>
+    <SERVIDOR>
+        <PUERTO />
+        <SSL>
+            <ACTIVADO>S</ACTIVADO>
+            <PUERTO>443</PUERTO>
+        </SSL>
+        <INDEX>index.htm</INDEX>
+        <ADMINISTRADOR>admin@webpki.org</ADMINISTRADOR>
+    </SERVIDOR>
+    <CA>
+        <INICIALIZADA>N</INICIALIZADA>
+        <DOMINIO>localhost</DOMINIO>
+        <URLACTIVA>https://localhost</URLACTIVA>
+        <EMISION>
+            <VALIDEZ>
+                <CLASE1>
+                    <CP>30</CP>
+                    <SSL>30</SSL>
+                </CLASE1>
+                <CLASE2>
+                    <CP>365</CP>
+                    <SSL>365</SSL>
+                </CLASE2>
+            </VALIDEZ>
+        </EMISION>
+        <RENOVACION>
+            <VALIDEZ>
+                <CP>365</CP>
+                <SSL>365</SSL>
+            </VALIDEZ>
+        </RENOVACION>
+    </CA>
+    <RA>
+        <AUTORIZACION>
+            <ACTIVADO>SI</ACTIVADO>
+            <MODO>FICHEROS</MODO>
+            <FICHEROS>
+                <FICHEROCP>~/webpki/data/usuarios_cp.txt</FICHEROCP>
+                <FICHEROSSL>~//webpki/data/usuarios_ssl.txt</FICHEROSSL>
+                <CN>1</CN>
+                <E>2</E>
+                <C>3</C>
+                <S>-1</S>
+                <L>-1</L>
+                <SEPARADOR>,</SEPARADOR>
+            </FICHEROS>
+            <LDAP>
+                <SERVIDOR />
+                <PUERTO>389</PUERTO>
+                <USER />
+                <PASSWORD />
+            </LDAP>
+        </AUTORIZACION>
+        <REGISTRO>
+            <ACTIVADO>SI</ACTIVADO>
+            <MODO>FICHEROS</MODO>
+            <FICHEROS>
+                <FICHEROCP>~/webpki/data/registro_cp.xml</FICHEROCP>
+                <FICHEROSSL>~/webpki/data/registro_ssl.xml</FICHEROSSL>
+                <CN>S</CN>
+                <E>S</E>
+                <C>S</C>
+                <S>S</S>
+                <L>S</L>
+                <DN>S</DN>
+                <CERT>S</CERT>
+            </FICHEROS>
+            <LDAP>
+                <SERVIDOR />
+                <PUERTO>389</PUERTO>
+                <USER />
+                <PASSWORD />
+            </LDAP>
+        </REGISTRO>
+    </RA>
+    <SMTP>
+        <SERVIDOR>localhost</SERVIDOR>
+        <PUERTO>25</PUERTO>
+        <TSL>S</TSL>
+        <USER />
+        <PASSWORD />
+        <REINTENTOS>3</REINTENTOS>
+        <PLANTILLAS>
+            <SSL>
+                <ACTIVADA>TEXT</ACTIVADA>
+                <HTML>~/webpki/conf/plantilla_correo_ssl.htm</HTML>
+                <TEXT>~/webpki/conf/plantilla_correo_ssl.txt</TEXT>
+            </SSL>
+            <CP>
+                <ACTIVADA>TEXT</ACTIVADA>
+                <HTML>~/webpki/conf/plantilla_correo_cp.htm</HTML>
+                <TEXT>~/webpki/conf/plantilla_correo_cp.txt</TEXT>
+            </CP>
+        </PLANTILLAS>
+    </SMTP>
+</CONFIGURACION>

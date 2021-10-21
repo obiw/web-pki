@@ -1,0 +1,135 @@
+
+<html>
+
+<head>
+
+
+<title>Solicitar un certificado de servidor seguro</title>
+<link rel="stylesheet" type="text/css" href="Estilo/estilo.css"></link>
+
+
+<script language="javascript">
+
+function comprobarEmail() 
+{             
+      if (document.proform.E.value == "")                    
+          {
+        return false;
+          }
+      else 
+      if ((document.proform.E.value.indexOf("@") != -1) && 
+          (document.proform.E.value.indexOf("@") < document.proform.E.value.lastIndexOf(".")))
+         {
+            return true; 
+         }
+      else
+         {
+            return false;
+         }
+}
+function comprobarCampos(){
+ if((comprobarEmail()) 
+ 	&& (document.proform.CN.value!="") 
+ 	&& (document.proform.CH1.value!="")
+ 	&& (document.proform.CH2.value!="")
+ 	&& (document.proform.CH1.value==document.proform.CH2.value)){
+ 	return true;	
+ }else{
+ 	alert("Algunos campos no han sido correctamente introducidos");
+	return false; 
+ }
+}
+</script>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<p align="left"><a href="/">Inicio</a> &gt; <b>Solicitar un
+certificado de servidor seguro</b></p>
+<hr></hr>
+<form name="proform" id="proform" method="POST" action="serverCA.htm"
+	onsubmit="return comprobarCampos()" enctype=x-www-form-urlencoded>
+<center>
+<table border="0" cellpadding="0" cellspacing="0"
+	style="border-collapse: collapse" width="989" height="65">
+	<tr>
+		<td width="1" background="Imagenes/esquina_superior_izquierda.jpg"
+			height="19" nowrap>&nbsp;</td>
+		<td background="Imagenes/superior.jpg" width="419" height="19">
+		&nbsp;</td>
+		<td width="8" background="Imagenes/esquina_superior_derecha.jpg"
+			height="19">&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="1" background="Imagenes/izquierda.jpg" height="19">&nbsp;</td>
+		<td width="419" background="Imagenes/centro.jpg" height="27">
+		<table border="0" cellpadding="0" cellspacing="0"
+			style="border-collapse: collapse" bordercolor="#111111" width="223%">
+			<tr>
+				<td width="17%">&nbsp;</td>
+				<td width="83%">&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="2%" bordercolor="#FFFFFF" valign="top"><font
+					size="1" color="#009933"><b>Nombre del sitio
+				Web:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b></font></td>
+				<td width="112%" bordercolor="#FFFFFF"><input type="text"
+					name="CN" size="40" style="font-family: Verdana; font-size: 8pt"
+					maxlength="64"><b><font size="1" color="#FF0000">*</font></b></td>
+			</tr>
+			<tr>
+				<td width="2%" bordercolor="#FFFFFF" valign="top"><font
+					size="1" color="#009933"><b>Correo Electrónico:</b></font></td>
+				<td width="112%" bordercolor="#FFFFFF"><input type="text"
+					name="E" size="40" style="font-family: Verdana; font-size: 8pt"
+					maxlength="255"><b><font size="1" color="#FF0000">*</font></b></td>
+			</tr>
+			<tr>
+				<td width="2%" bordercolor="#FFFFFF" valign="top"><font
+					size="1" color="#009933"><b>Contraseña:</b></font></td>
+				<td width="112%" bordercolor="#FFFFFF"><input type="password"
+					name="CH1" size="8" style="font-family: Verdana; font-size: 8pt"
+					maxlength="8"><b><font size="1" color="#FF0000">*</font></b></td>
+			</tr>
+			<tr>
+				<td width="2%" bordercolor="#FFFFFF" valign="top"><font
+					size="1" color="#009933"><b>Repita Contraseña:</b></font></td>
+				<td width="112%" bordercolor="#FFFFFF"><input type="password"
+					name="CH2" size="8" style="font-family: Verdana; font-size: 8pt"
+					maxlength="8"><b><font size="1" color="#FF0000">*</font></b></td>
+			</tr>
+			<tr>
+				<td width="2%" bordercolor="#FFFFFF" valign="top"><font
+					size="1" color="#009933"><b>CSR:</b></font></td>
+				<td width="112%" bordercolor="#FFFFFF"><textarea rows="13"
+					name="csr" cols="56" style="font-family: Verdana; font-size: 8pt"></textarea><b><font
+					size="1" color="#FF0000">*</font></b></td>
+			</tr>
+			<tr>
+				<td width="17%">&nbsp;</td>
+				<td width="83%">&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="100%" colspan="2">
+				<p align="center"><input type="hidden" name="operacion"
+					value="emitir_MSNS_ssl"> <input type="hidden" name="tipo"
+					value="Clase1"> <input type="submit"
+					style="font-family: Verdana; font-size: 8pt; font-weight: bold"></input>
+				</td>
+			</tr>
+		</table>
+		</td>
+		<td width="8" background="Imagenes/derecha.jpg" height="15">&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="1" background="Imagenes/esquina_inferior_izquierda.jpg"
+			height="19">&nbsp;</td>
+		<td width="60" background="Imagenes/inferior.jpg" height="19">&nbsp;</td>
+		<td width="8" background="Imagenes/esquina_inferior_derecha.jpg"
+			height="19">&nbsp;</td>
+	</tr>
+</table>
+</center>
+</form>
+</body>
+</html>

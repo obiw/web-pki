@@ -1,0 +1,177 @@
+
+<html>
+
+<head>
+
+<Script Language="JavaScript">
+<!--
+var browserName=navigator.appName;
+var browserNum=parseInt(navigator.appVersion);
+
+var requiredBrowserNumNS=3;
+
+if (browserName == "Netscape")
+    {
+         if (browserNum < requiredBrowserNumNS )
+       {
+         self.location="error_navegador_no_soportado.htm";
+       }
+     }
+else
+    {
+       
+         self.location="error_navegador_no_soportado.htm";
+       
+    }
+//-->
+</script>
+
+<title>Solicitar un certificado personal</title>
+<link rel="stylesheet" type="text/css" href="Estilo/estilo.css"></link>
+
+<script language="javascript">
+
+function comprobarEmail() 
+{             
+      if (document.proform.E.value == "")                    
+          {
+        return false;
+          }
+      else 
+      if ((document.proform.E.value.indexOf("@") != -1) && 
+          (document.proform.E.value.indexOf("@") < document.proform.E.value.lastIndexOf(".")))
+         {
+            return true; 
+         }
+      else
+         {
+            return false;
+         }
+}
+function comprobarCampos(){
+ if((comprobarEmail()) 
+ 	&& (document.proform.CN.value!="") 
+ 	&& (document.proform.C.value!="")
+ 	&& (document.proform.CH1.value!="")
+ 	&& (document.proform.CH2.value!="")
+ 	&& (document.proform.CH1.value==document.proform.CH2.value)){
+ 	return true;	
+ }else{
+ 	alert("Algunos campos no han sido correctamente introducidos");
+	return false; 
+ }
+}
+</script>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<p align="left"><a href="/">Inicio</a> &gt; <b>Solicitar un
+certificado personal</b></p>
+<hr></hr>
+<center>
+
+<p></p>
+<form name="proform" id="proform" method="POST" action="serverCA.htm"
+	onsubmit="return comprobarCampos()" enctype=x-www-form-urlencoded>
+
+
+<center>
+<table border="0" cellpadding="0" cellspacing="0"
+	style="border-collapse: collapse" width="984" height="65">
+	<tr>
+		<td width="14" background="Imagenes/esquina_superior_izquierda.jpg"
+			height="19" nowrap>&nbsp;</td>
+		<td background="Imagenes/superior.jpg" width="943" height="19">
+		&nbsp;</td>
+		<td width="16" background="Imagenes/esquina_superior_derecha.jpg"
+			height="19">&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="14" background="Imagenes/izquierda.jpg" height="19">&nbsp;</td>
+		<td width="943" background="Imagenes/centro.jpg" height="27">
+		<table border="0" cellpadding="0" cellspacing="0"
+			style="border-collapse: collapse" bordercolor="#111111" width="100%">
+			<tr>
+				<td width="19%">&nbsp;</td>
+				<td width="81%">&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="1%" valign="top"><font size="1" color="#009933"><b>Nombre
+				y Apellidos:</b></font></td>
+				<td width="110%"><input type="text" name="CN" size="40"
+					style="font-family: Verdana; font-size: 8pt" maxlength="64"><b><font
+					size="1" color="#FF0000">*</font></b></td>
+			</tr>
+			<tr>
+				<td width="1%" valign="top"><font size="1" color="#009933"><b>Correo
+				Electrónico:</b></font></td>
+				<td width="110%"><input type="text" name="E" size="40"
+					style="font-family: Verdana; font-size: 8pt" maxlength="255"><b><font
+					size="1" color="#FF0000">*</font></b></td>
+			</tr>
+			<tr>
+				<td width="1%" valign="top"><font size="1" color="#009933"><b>País:</b></font></td>
+				<td width="110%"><input type="text" name="C" size="2"
+					style="font-family: Verdana; font-size: 8pt" maxlength="2"><b><font
+					size="1" color="#FF0000">*</font></b></td>
+			</tr>
+			<tr>
+				<td width="1%" valign="top"><font size="1" color="#009933"><b>Provincia
+				o Estado:</b></font></td>
+				<td width="110%"><input type="text" name="S" size="40"
+					style="font-family: Verdana; font-size: 8pt" maxlength="128"></td>
+			</tr>
+			<tr>
+				<td width="1%" valign="top"><font size="1" color="#009933"><b>Localidad:</b></font></td>
+				<td width="110%"><input type="text" name="L" size="40"
+					style="font-family: Verdana; font-size: 8pt" maxlength="128"></td>
+			</tr>
+			<tr>
+				<td width="1%" valign="top"><font size="1" color="#009933"><b>Contraseña:</b></font></td>
+				<td width="110%"><input type="password" name="CH1" size="8"
+					style="font-family: Verdana; font-size: 8pt" maxlength="8"><b><font
+					size="1" color="#FF0000">*</font></b></td>
+			</tr>
+			<tr>
+				<td width="1%" valign="top"><font size="1" color="#009933"><b>Repita
+				Contraseña:</b></font></td>
+				<td width="110%"><input type="password" name="CH2" size="8"
+					style="font-family: Verdana; font-size: 8pt" maxlength="8"><b><font
+					size="1" color="#FF0000">*</font></b></td>
+			</tr>
+			<tr>
+				<td width="1%" valign="top"><b> <font size="1"
+					color="#009933">Clave:</font></b></td>
+				<td width="110%"><keygen name="public_key"
+					style="font-family: Verdana; font-size: 8pt"> </keygen></td>
+			</tr>
+			<tr>
+				<td width="19%">&nbsp;</td>
+				<td width="81%">&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="100%" colspan="2">
+				<p align="center"><input type="hidden" name="operacion"
+					value="emitir_NS_cp"> <input type="hidden" name="tipo"
+					value="Clase2"> <input type="submit"
+					style="font-family: Verdana; font-size: 8pt; font-weight: bold"></input>
+				</p>
+				</td>
+			</tr>
+		</table>
+		</td>
+		<td width="11" background="Imagenes/derecha.jpg" height="15">&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="14" background="Imagenes/esquina_inferior_izquierda.jpg"
+			height="19">&nbsp;</td>
+		<td width="584" background="Imagenes/inferior.jpg" height="19">&nbsp;</td>
+		<td width="16" background="Imagenes/esquina_inferior_derecha.jpg"
+			height="19">&nbsp;</td>
+	</tr>
+</table>
+</center>
+</form>
+</body>
+</html>

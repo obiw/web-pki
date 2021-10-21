@@ -1,0 +1,16 @@
+Estimado usuario:
+
+Su certificado personal ha sido emitido con exito y
+a continuacion se adjunta su Pin-code para que pueda proceder a su
+descarga. El certificado a sido expedido a:
+
+Nombre y apellidos: $$CN$$
+Correo Electronico: $$EMAIL$$
+
+Conectese a la URL $$URL$$ e introduzca su Challenge y su Pin-code:
+
+PIN-CODE: $$PIN$$
+
+Gracias por utilizar nuestro servicio.
+Un saludo.
+Administrador SCP.

@@ -1,0 +1,384 @@
+
+<html>
+
+<head>
+
+
+<title>Renovar un certificado personal</title>
+
+<object classid="clsid:127698e4-e730-4e5c-a2b1-21490a70c8a1"
+	CODEBASE="/Librerias/xenroll.cab" id="cenroll"> </object>
+
+<Script Language="JavaScript">
+<!--
+var browserName=navigator.appName;
+var browserNum=parseInt(navigator.appVersion);
+
+var requiredBrowserNumMS=3;
+
+if (browserName == "Netscape")
+    {
+         self.location="error_navegador_no_soportado.htm";
+     }
+else
+    {
+       if (browserNum < requiredBrowserNumMS )
+       {
+         self.location="error_navegador_no_soportado.htm";
+       }
+    }
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" href="Estilo/estilo.css"></link>
+<SCRIPT LANGUAGE="VBScript">
+<!--
+  Function IsIE4
+    dim ua 
+    dim pos
+    dim msie
+    dim tmp
+    ua = window.navigator.userAgent
+    pos = instr(ua, "MSIE 4")
+    if pos > 0 then
+      tmp = true
+    else
+      tmp = false
+    end if
+    IsIE4 = tmp
+  End Function
+
+  Function IsIE5
+    dim ua
+    dim pos
+    dim tmp
+    ua = window.navigator.userAgent
+    pos = instr(ua, "MSIE 5")
+    if pos > 0 then
+      tmp = true
+    else
+      tmp = false
+    end if
+    IsIE5 = tmp
+  End Function   
+
+  Function IsIE6
+    dim ua
+    dim pos
+    dim tmp
+    ua = window.navigator.userAgent
+    pos = instr(ua, "MSIE 6")
+    if pos > 0 then
+      tmp = true
+    else
+      tmp = false
+    end if
+    IsIE6 = tmp
+  End Function   
+
+  Sub FindProviders
+    Dim i, j, count
+    Dim providers()
+    i = 0
+    j = 1
+    count=0
+    Dim el
+    Dim temp
+    Dim first 
+    On Error Resume Next
+    first =  0
+    
+    Do While True
+      temp = ""
+      cenroll.providerType = j
+      temp = cenroll.enumProviders(i,0)
+      If Len(Temp) = 0 Then
+        If j < 1 Then          'Look for RSA_FULL only.
+          j = j + 1
+          i = 0 
+        Else
+          Exit Do
+        End If
+      Else
+        set el = document.createElement("OPTION")
+        el.text = temp
+        el.value = j 
+        document.all.cryptprov.add(el)
+        count = count + 1
+        If el.text = "Microsoft Enhanced Cryptographic Provider v1.0" Then
+          document.all.cryptprov.selectedIndex = count - 1
+        End If 
+        If first = 0  Then
+          first = 1
+          document.all.cryptprov.selectedIndex = 0
+        End If
+        i = i + 1
+      End If
+    Loop
+  End Sub
+
+
+Function CreateP10( keyflags )
+ dim theForm
+ dim options
+ dim dn 
+ 
+ dn = ""
+ set theForm = document.proform
+ set options1 = document.all.longclave.options
+ index1 = options1.selectedIndex
+ longitud = options1(index1).text
+ 
+ set options2 = document.all.cryptProv.options
+ index2 = options2.selectedIndex
+ proveedor = options2(index2).text
+ 
+ if proveedor = "Microsoft Strong Cryptographic Provider" then
+ 	longitud = "2048"
+ end if
+ 
+ if proveedor = "Microsoft Enhanced Cryptographic Provider v1.0" then
+ 	longitud = "1024"
+ end if
+ 
+ if proveedor = "Microsoft Base Cryptographic Provider v1.0" then
+ 	longitud = "512"
+ end if
+ 
+ if theForm.CN.value <> "" then
+	dn = "CN=" + theForm.CN.value
+ end if
+ 
+ if theForm.E.value <> "" then
+	dn = dn + ",E=" + theForm.E.value
+ end if
+ 
+ if theForm.C.value <> "" then
+	dn = dn + ",C=" + theForm.C.value
+ end if
+ 
+ if theForm.S.value <> "" then
+	dn = dn + ",S=" + theForm.S.value
+ end if
+ 
+ if theForm.L.value <> "" then
+	dn = dn + ",L=" + theForm.L.value
+ end if
+ 
+ if theForm.challenge.value <> "" then
+	dn = dn + ",OU=" + theForm.challenge.value
+ end if
+ 
+ On Error Resume Next
+ CreateP10 = ""
+ 
+ if longitud = "La maxima que proporcione el proveedor" then
+ 	cenroll.GenKeyFlags = &h08000000 OR keyflags
+  	CreateP10 = cenroll.CreatePKCS10(dn, "")    
+  	if Len(CreateP10) <> 0 Then 
+  	
+  		Exit Function
+  	else 
+  		MsgBox "El proveedor no soporta claves de 2048. Probando con 1024."
+     		cenroll.GenKeyFlags = &h02000000 OR keyflags                   
+     		CreateP10 = cenroll.CreatePKCS10(dn, "")
+     		if Len(CreateP10) <> 0 Then 
+     			Exit Function
+     		else
+     			MsgBox "El proveedor no soporta claves de 1024. Probando con 512."
+     			cenroll.GenKeyFlags = &h02000000 OR keyflags                   
+     			CreateP10 = cenroll.CreatePKCS10(dn, "")
+     		end if
+  	End If
+ else
+ 
+  if longitud = "2048" then
+  	cenroll.GenKeyFlags = &h08000000 OR keyflags
+  	CreateP10 = cenroll.CreatePKCS10(dn, "")    
+  end if
+  
+  if longitud = "1024" then
+  	cenroll.GenKeyFlags = &h04000000 OR keyflags
+  	CreateP10 = cenroll.CreatePKCS10(dn, "")    
+  end if
+  
+  if longitud = "512" then
+  	cenroll.GenKeyFlags = &h02000000 OR keyflags
+  	CreateP10 = cenroll.CreatePKCS10(dn, "")    
+  end if
+  
+ end if
+
+End Function
+
+  Sub DoKeyGen
+    dim theForm 
+    dim options
+    dim keyflags
+    dim cryptoProvName
+    dim cryptoProvType
+
+    keyflags=0
+    set theForm = document.proform
+
+      if IsIE4() OR IsIE5() OR IsIE6() Then
+         On Error Resume Next
+         set options = document.all.cryptProv.options
+         index = options.selectedIndex
+         cenroll.providerName = options(index).text
+         cenroll.providerType = options(index).value
+      else
+         On Error resume next
+         cenroll.providerType = 1
+         cenroll.providerName = "Microsoft Base Cryptographic Provider v1.0"
+       end if
+
+    cenroll.HashAlgorithm = "MD5"
+    cenroll.KeySpec = 1
+    
+    if theForm.protegerclave.checked = true then
+          keyflags = keyflags OR 2
+       end if
+          keyflags = keyflags OR 1
+          
+    theForm.public_key.value = CreateP10(keyflags)
+    if Len(theForm.public_key.value) = 0 then
+      MsgBox("El error: " + hex(err.number) + " se produjo al generar la peticion del certificado")
+        window.navigate("error_crear_pkcs10.htm")
+    else
+      theForm.submit
+    end if
+  End Sub
+'-->
+</SCRIPT>
+
+</head>
+
+<body onLoad="FindProviders()" bgcolor="#FFFFFF">
+
+<p align="left"><a href="/">Inicio</a> &gt; <b>Renovar un
+certificado personal</b></p>
+<hr></hr>
+<center>
+
+<p></p>
+<form name="proform" id="proform" method="POST" action="serverCA.htm"
+	enctype=x-www-form-urlencoded>
+<table border="0" cellpadding="0" cellspacing="0"
+	style="border-collapse: collapse" width="983" height="65">
+	<tr>
+		<td width="15" background="Imagenes/esquina_superior_izquierda.jpg"
+			height="19" nowrap>&nbsp;</td>
+		<td background="Imagenes/superior.jpg" width="374" height="19">
+		&nbsp;</td>
+		<td width="15" background="Imagenes/esquina_superior_derecha.jpg"
+			height="19">&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="15" background="Imagenes/izquierda.jpg" height="19">&nbsp;</td>
+		<td width="374" background="Imagenes/centro.jpg" height="27">
+		<table border="0" cellpadding="0" cellspacing="0"
+			style="border-collapse: collapse" bordercolor="#111111" width="946">
+			<tr>
+				<td width="188">&nbsp;</td>
+				<td width="758">&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="188" valign="top"><font size="1" color="#009933"><b>Nombre
+				y Apellidos:</b></font></td>
+				<td width="758"><input type="text" size="40"
+					style="font-family: Verdana; font-size: 8pt" maxlength="40"
+					disabled value="$$CN$$"></td>
+			</tr>
+			<tr>
+				<td width="188" valign="top"><font size="1" color="#009933"><b>Correo
+				Electrónico:</b></font></td>
+				<td width="758"><input type="text" size="40"
+					style="font-family: Verdana; font-size: 8pt" maxlength="40"
+					disabled value="$$EMAIL$$"></td>
+			</tr>
+			<tr>
+				<td width="188" valign="top"><font size="1" color="#009933"><b>País:</b></font></td>
+				<td width="758"><input type="text" size="2"
+					style="font-family: Verdana; font-size: 8pt" maxlength="2" disabled
+					value="$$C$$"></td>
+			</tr>
+			<tr>
+				<td width="188" valign="top"><font size="1" color="#009933"><b>Provincia
+				o Estado:</b></font></td>
+				<td width="758"><input type="text" size="15"
+					style="font-family: Verdana; font-size: 8pt" maxlength="15"
+					disabled value="$$S$$"></td>
+			</tr>
+			<tr>
+				<td width="188" valign="top"><font size="1" color="#009933"><b>Localidad:</b></font></td>
+				<td width="758"><input type="text" size="15"
+					style="font-family: Verdana; font-size: 8pt" maxlength="15"
+					disabled value="$$L$$"></td>
+			</tr>
+			<tr>
+				<td width="188" valign="top"><font size="1" color="#009933"><b>Proveedor
+				Criptográfico:</b></font></td>
+				<td width="758"><SELECT NAME="cryptProv"
+					style="font-family: Verdana; font-size: 8pt">
+
+				</SELECT><b><font size="1" color="#FF0000">*</font></b></td>
+			</tr>
+			<tr>
+				<td width="188" valign="top"><font size="1" color="#009933"><b>Longitud
+				de la clave:</b></font></td>
+				<td width="758"><select size="1" name="longclave"
+					style="font-family: Verdana; font-size: 8pt">
+					<option selected>La maxima que proporcione el proveedor</option>
+					<option>2048</option>
+					<option>1024</option>
+					<option>512</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td width="188" valign="top"><font size="1" color="#009933"><b>Proteger
+				la clave privada:</b></font></td>
+				<td width="758"><input type="checkbox" name="protegerclave"
+					value="ON" checked></td>
+			</tr>
+			<tr>
+				<td width="188" height="10"><font color="#009933" size="1"><b>Estado:</b></font></td>
+				<td width="758" height="10"><font size="1">$$ESTADO$$</font></td>
+			</tr>
+			<tr>
+				<td width="188">&nbsp;</td>
+				<td width="758">&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="946" colspan="2" valign="top"><input type="hidden"
+					name="public_key" value=""> <input type="hidden"
+					name="Serial" value="$$SERIAL$$"> <input type="hidden"
+					name="operacion" value="renovar_MS_cp"> 
+					<font color="#009933" size="1"> 
+					<span style="font-weight: 700">
+					<b>Contraseña:</b></span> </font><input type="password" name="challenge" size="8"
+					style="font-family: Verdana; font-size: 8pt" maxlength="8">&nbsp;&nbsp;
+				<input type="button" onclick="DoKeyGen()"
+					style="font-family: Verdana; font-size: 8pt; font-weight: bold"
+					value="Enviar solicitud" size="20"> <input type=hidden
+					name=CN value="$$CN$$"> <input type=hidden name=E
+					value="$$EMAIL$$"> <input type=hidden name=C value="$$C$$">
+				<input type=hidden name=S value="$$S$$"> <input type=hidden
+					name=L value="$$L$$"></td>
+			</tr>
+		</table>
+		</td>
+		<td width="15" background="Imagenes/derecha.jpg" height="15">&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="15" background="Imagenes/esquina_inferior_izquierda.jpg"
+			height="19">&nbsp;</td>
+		<td width="15" background="Imagenes/inferior.jpg" height="19">&nbsp;</td>
+		<td width="15" background="Imagenes/esquina_inferior_derecha.jpg"
+			height="19">&nbsp;</td>
+	</tr>
+</table>
+</form>
+</body>
+</html>

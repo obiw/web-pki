@@ -1,0 +1,17 @@
+body {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: Black;
+	overflow: auto;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+a:link { 
+color: #009933;
+}
+a:visited { 
+color: #CC33CC;
+}

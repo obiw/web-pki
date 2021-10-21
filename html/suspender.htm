@@ -1,0 +1,109 @@
+<html>
+
+<head>
+<title>Suspender / Reactivar certificado</title>
+<link rel="stylesheet" type="text/css" href="Estilo/estilo.css">
+</head>
+
+<body>
+
+  <p align="left"><a href="/">Inicio</a> &gt; <b><font size="1">
+  Suspender / Reactivar un certificado</font></b></p>
+  <hr>
+<center>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="984" height="65">
+  <tr>
+    <td width="14" background="Imagenes/esquina_superior_izquierda.jpg" height="19" nowrap>&nbsp;</td>
+    <td background="Imagenes/superior.jpg" width="941" height="19">
+    &nbsp;</td>
+    <td width="15" background="Imagenes/esquina_superior_derecha.jpg" height="19">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="14" background="Imagenes/izquierda.jpg" height="19">&nbsp;</td>
+    <td width="941" background="Imagenes/centro.jpg" height="27">
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+      <tr>
+            <td width="16%" height="12">
+            </td>
+            <td width="84%" height="12">
+            </td>
+          </tr>
+      <tr>
+            <td width="16%" height="12" valign="top">
+            <font color="#009933" size="1"><b>Versión:</b></font></td>
+            <td width="84%" height="12">
+            <font size="1">&nbsp;$$VERSION$$</font></td>
+          </tr>
+      <tr>
+            <td width="16%" height="12" valign="top">
+            <font color="#009933" size="1"><b>Asunto:</b></font></td>
+            <td width="84%" height="12">
+            <font size="1">&nbsp;$$ASUNTO$$</font></td>
+          </tr>
+      <tr>
+            <td width="16%" height="12" valign="top">
+            <font color="#009933" size="1"><b>Emisor:</b></font></td>
+            <td width="84%" height="12">
+            <font size="1">&nbsp;$$EMISOR$$</font></td>
+          </tr>
+      <tr>
+            <td width="16%" height="12" valign="top">
+            <font color="#009933" size="1"><b>Valido desde:</b></font></td>
+            <td width="84%" height="12">
+            <font size="1">&nbsp;$$DESDE$$</font></td>
+          </tr>
+      <tr>
+            <td width="16%" height="12" valign="top">
+            <font color="#009933" size="1"><b>Valido hasta:</b></font></td>
+            <td width="84%" height="12">
+            <font size="1">&nbsp;$$HASTA$$</font></td>
+          </tr>
+      <tr>
+            <td width="16%" height="8" valign="top">
+            <font color="#009933" size="1"><b>Algoritmo de firma:</b></font></td>
+            <td width="84%" height="8">
+            <font size="1">&nbsp;$$ALGORITMO$$</font></td>
+          </tr>
+      <tr>
+            <td width="16%" height="10" valign="top">
+            <font color="#009933" size="1"><b>Estado:</b></font></td>
+            <td width="84%" height="10">
+            <font size="1">&nbsp;$$ESTADO$$</font></td>
+          </tr>
+      <tr>
+        <td colspan="2">&nbsp;</td>
+      </tr>
+      <tr>
+        <td colspan="2" valign="top"><form method="POST" action="serverCA.htm" enctype=x-www-form-urlencoded>
+                   <p align="left"><b><font size="1" color="#009933">Contraseña:
+                   </font>
+                   <font color="#000099">
+                   <input type="password" name="challenge" size="20" style="font-family: Verdana; font-size: 8pt">&nbsp;&nbsp; 
+                   <select size="1" name="accion" style="font-family: Verdana; font-size: 8pt">
+                   <option selected value="Z">Suspender</option>
+                   <option value="V">Reactivar</option>
+                   </select>&nbsp;&nbsp;&nbsp; </font>
+                   </b>
+                   <input type="submit" style="font-family: Verdana; font-size: 8pt; font-weight: bold"></p>
+                   <input type="hidden" name="operacion" value="suspender">
+                   <input type="hidden" name="serial" value="$$SERIAL$$">
+                   <input type="hidden" name="serial" value="$$SERIAL$$">
+                   <input type="hidden" name="E" value="$$EMAIL$$">
+                   <input type="hidden" name="CN" value="$$CN$$">
+                 </form>
+</td>
+      </tr>
+    </table>
+    </td>
+    <td width="15" background="Imagenes/derecha.jpg" height="15">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="14" background="Imagenes/esquina_inferior_izquierda.jpg" height="19">&nbsp;</td>
+    <td width="582" background="Imagenes/inferior.jpg" height="19">&nbsp;</td>
+    <td width="15" background="Imagenes/esquina_inferior_derecha.jpg" height="19">&nbsp;</td>
+  </tr>
+</table>
+</center>
+</body>
+
+</html>
